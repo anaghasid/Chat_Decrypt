@@ -39,34 +39,34 @@ def offsetReverse(matrix,n):
     match n:
         case 1:
             for i in range(len(matrix[0])):
-                matrix[0][i] -= 5 #row addition
+                matrix[0][i] = (matrix[0][i] - 5)%128 #row addition
         case 2:
             for i in range(len(matrix[0])):
-                matrix[i][0]-= 5 #column addition
+                matrix[i][0] = (matrix[i][0] - 5)%128 #column addition
         case 3:
             for i in range(len(matrix[0])):
-                matrix[1][i]-=5
-                matrix[0][i]-=5 #2 rows addition
+                matrix[1][i] = (matrix[1][i]-5)%128
+                matrix[0][i] = (matrix[0][i]-5)%128 #2 rows addition
         case 4:
             for i in range(len(matrix[0])):
-                matrix[3][i]+=5
-                matrix[2][i]+=5 #2 row subtraction
+                matrix[3][i] = (matrix[3][i]+5)%128
+                matrix[2][i] = (matrix[2][i]+5)%128 #2 row subtraction
                 
         case 5:
             for i in range(len(matrix[0])):
-                matrix[i][3] +=5
-                matrix[i][0] +=5
-                matrix[i][2] -=5
-                matrix[i][1] -=5
+                matrix[i][3] = (matrix[i][3] +5)%128
+                matrix[i][0] = (matrix[i][0] +5)%128
+                matrix[i][2] = (matrix[i][2] -5)%128
+                matrix[i][1] = (matrix[i][1] -5)%128
                 
         case 6:
             for i in range(len(matrix[0])):
-                matrix[i][i]-=5 #diagonal 
+                matrix[i][i] = (matrix[i][i]-5)%128 #diagonal 
         case 7:
-            matrix[-1, -1]-=5
-            matrix[-1, 0]-=5
-            matrix[0, -1]-=5
-            matrix[0, 0]-= 5
+            matrix[-1,-1] = (matrix[-1,-1]-5)%128
+            matrix[-1,0] = (matrix[-1,0]-5)%128
+            matrix[0,-1] = (matrix[0,-1]-5)%128
+            matrix[0,0] = (matrix[0, 0]-5)%128
     return matrix
 
 def interchangeInverse(l1,p):
@@ -127,22 +127,37 @@ def shifter(l2):
     l2[2]=val2
     l2[3]=val3
     return l2
+    
+def transpose(l1):
+    l2 = []
+    # iterate over list l1 to the length of an item
+    for i in range(len(l1[0])):
+       
+        row =[]
+        for item in l1:
+            # appending to new list with values and index positions
+            # i contains index position and item contains values
+            row.append(item[i])
+        l2.append(row)
+    return l2
 
 def unshift(l1, amt):
     shift=[0,0,0,0]
     for i in range(0,4):
         j=amt[i]
-        while( j!=4):
+        while(j!=4):
             shift[i]=shifter(l1[i])
             j+=1
     return shift
 
-ded = "gobbehelad"
-mat2 = makeMatrix(ded)
+ded = "fyffnh nkaatianh"
+mat1 = makeMatrix(ded)
 
-mat2 = unshift(mat2,[0,3,0,3])
-print(mat2)
-# mat3 = interchangeInverse(mat2,4)
+# m = [[108, 111, 98, 98], [101, 104, 101, 113], [102, 100, 0, 0], [0, 0, 0, 5]]
+# print(unshift(m,[0,3,0,3]))
+# mat2 = unshift(mat1,[0,3,0,3])
+# print(mat2)
+# # mat3 = interchangeInverse(mat1,4)
+mat2 = transpose(mat1)
 mat2 = offsetReverse(mat2,2)
-print(mat2)
-# print(getString(mat2))
+print(getString(mat2))

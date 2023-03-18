@@ -32,34 +32,34 @@ def offset(matrix,n):
     match n:
         case 1:
             for i in range(len(matrix[0])):
-                matrix[0][i] += 5 #row addition
+                matrix[0][i] = (matrix[0][i] + 5)%128 #row addition
         case 2:
             for i in range(len(matrix[0])):
-                matrix[i][0]+= 5 #column addition
+                matrix[i][0] = (matrix[i][0]+ 5)%128 #column addition
         case 3:
             for i in range(len(matrix[0])):
-                matrix[0][i]+=5 #2 rows addition
-                matrix[1][i]+=5
+                matrix[0][i] = (matrix[0][i]+5)%128 #2 rows addition
+                matrix[1][i] = (matrix[1][i]+5)%128
         case 4:
             for i in range(len(matrix[0])):
-                matrix[2][i]-=5 #2 row subtraction
-                matrix[3][i]-=5
+                matrix[2][i] = (matrix[2][i]-5)%128 #2 row subtraction
+                matrix[3][i] = (matrix[3][i]-5)%128
                 
         case 5:
             for i in range(len(matrix[0])):
-                matrix[i][1] +=5
-                matrix[i][2] +=5
-                matrix[i][0] -=5
-                matrix[i][3] -=5
+                matrix[i][1] = (matrix[i][1] +5)%128
+                matrix[i][2] = (matrix[i][2] +5)%128
+                matrix[i][0] = (matrix[i][0] -5)%128
+                matrix[i][3] = (matrix[i][3] -5)%128
                 
         case 6:
             for i in range(len(matrix[0])):
-                matrix[i][i]+=5 #diagonal 
+                matrix[i][i] = (matrix[i][i]+5)%128 #diagonal 
         case 7:
-            matrix[0, 0]+= 5
-            matrix[0, -1]+=5
-            matrix[-1, 0]+=5
-            matrix[-1, -1]+=5
+            matrix[0,0] = (matrix[0, 0]+5)%128
+            matrix[0,-1] = (matrix[0,-1]+5)%128
+            matrix[-1,0] = (matrix[-1,0]+5)%128
+            matrix[-1,-1] = (matrix[-1,-1]+5)%128
     return matrix
 
 def interchange(l1,p):
@@ -154,7 +154,6 @@ def shiftMatrix(l1,op):
             
     return shift
             
-
 def shifter(l2):
     val1=l2[0]
     val2=l2[1]
@@ -172,16 +171,33 @@ def getString(mat_arr):
     res_str = ""
     for i in range(4):
         for j in range(4):
-            res_str += chr(mat_arr[i][j])
+            if mat_arr[i][j]==0:
+                res_str += '~'
+            else:
+                res_str += chr(mat_arr[i][j])
     return res_str
 
-samp_string = "gobblehead"
+def transpose(l1):
+    l2 = []
+    # iterate over list l1 to the length of an item
+    for i in range(len(l1[0])):
+       
+        row =[]
+        for item in l1:
+            # appending to new list with values and index positions
+            # i contains index position and item contains values
+            row.append(item[i])
+        l2.append(row)
+    return l2
+
+
+samp_string = "ankithaaa ananth"
 mat_arr = makeMatrix(samp_string)
 printMatrix(mat_arr)
-# mat_arr = offset(mat_arr,2)
+mat_arr = offset(mat_arr,2)
 # mat_arr = interchange(mat_arr,3)
-# printMatrix(interchange(mat_arr,4))
-
-mat_arr = shiftMatrix(mat_arr,3)
+mat_arr = transpose(mat_arr)
+# mat_arr = shiftMatrix(mat_arr,3)
+printMatrix(mat_arr)
 print("After offset, interchange, string: ",getString(mat_arr))
 
