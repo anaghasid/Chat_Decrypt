@@ -115,10 +115,34 @@ def col(a,b,l1):
   for i in l1:
     i[a],i[b]=i[b],i[a]
 
-ded = "adgbbolehe"
-mat2 = makeMatrix(ded)
-print(mat2)
 
-mat3 = interchangeInverse(mat2,4)
-# mat2 = offsetReverse(mat2,2)
-print(getString(mat2))
+def shifter(l2):
+    val1=l2[0]
+    val2=l2[1]
+    val3=l2[2]
+    val4=l2[3]
+
+    l2[0]=val4
+    l2[1]=val1
+    l2[2]=val2
+    l2[3]=val3
+    return l2
+
+def unshift(l1, amt):
+    shift=[0,0,0,0]
+    for i in range(0,4):
+        j=amt[i]
+        while( j!=4):
+            shift[i]=shifter(l1[i])
+            j+=1
+    return shift
+
+ded = "gobbehelad"
+mat2 = makeMatrix(ded)
+
+mat2 = unshift(mat2,[0,3,0,3])
+print(mat2)
+# mat3 = interchangeInverse(mat2,4)
+mat2 = offsetReverse(mat2,2)
+print(mat2)
+# print(getString(mat2))

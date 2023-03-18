@@ -5,13 +5,15 @@ def fun1(l1,amt):
     shift=[0,0,0,0]
     for i in range(0,4):
         j=0
+        if j==amt[i]:
+            shift[i] = l1[i]
         while( j!=amt[ i ] ):
-            shift[i]=shifter( l1[i])
+            shift[i]=shifter(l1[i])
             j+=1
     return shift
 
 
-def fun( l1,op):
+def shiftMatrix(l1,op):
     shift=[0,0,0,0]
    
     if op==1:
@@ -54,7 +56,7 @@ def shifter( l2):
 
     
 l=[]
-l=fun(l1,1)
+l=shiftMatrix(l1,1)
 print(l)
 
 
@@ -64,7 +66,7 @@ def unshift( l , amt):
     for i in range(0,4):
         j=amt[i]
         while( j!=4):
-            shift[i]=shifter( l1[i])
+            shift[i]=shifter(l1[i])
             j+=1
     return shift
     
