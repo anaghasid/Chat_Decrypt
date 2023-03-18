@@ -153,22 +153,26 @@ def unshift(l1, amt):
     return shift
 
 def decodeFun(key,mat):
-   for i in range(14,0,-2):
-      match int(key[i]):
-         case 1: offsetReverse(mat,key[i+1])
-         case 2: transpose(mat)
-         case 3: unshift(mat,key[i+1])
+    for i in range(14,0,-2):
+        match int(key[i]):
+            case 1: offsetReverse(mat,int(key[i+1]))
+            case 2: transpose(mat)
+            case 3: unshift(mat,int(key[i+1]))
         #  case 4: offsetReverse(mat,key[i+1])
+    return mat
 
 
-ded = "sfz♣lm~or ~~n~~m"
+ded = "~um~~~~~mnor nal"
 mat1 = makeMatrix(ded)
+s= "3523363124363235"
 
 # m = [[108, 111, 98, 98], [101, 104, 101, 113], [102, 100, 0, 0], [0, 0, 0, 5]]
 # print(unshift(m,[0,3,0,3]))
-mat2 = unshift(mat1,[0,3,0,3])
+# mat2 = unshift(mat1,[0,3,0,3])
 # print(mat2)
 # # mat3 = interchangeInverse(mat1,4)
-mat2 = transpose(mat1)
-mat2 = offsetReverse(mat2,2)
+# mat2 = transpose(mat1)
+# mat2 = offsetReverse(mat2,2)
+
+mat2 = decodeFun(s,mat1)
 print(getString(mat2))
