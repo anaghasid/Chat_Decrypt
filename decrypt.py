@@ -152,18 +152,35 @@ def unshift(l1, amt):
             j+=1
     return shift
 
+def arr(op):
+    amt=[0,0,0,0]
+    if op==1:
+        amt=[2,1,0,3]
+    elif op==2:
+        amt=[1,2,0,3]
+    elif op==3:
+        amt=[0,3,0,3]
+    elif op==4:
+        amt=[2,3,1,0]
+    elif op==5:
+        amt=[3,0,0,2]
+    elif op==6:
+        amt=[0,1,2,3]
+    elif op==7:
+        amt=[1,1,2,1]
+    return amt
+
 def decodeFun(key,mat):
     for i in range(14,0,-2):
         match int(key[i]):
             case 1: offsetReverse(mat,int(key[i+1]))
             case 2: transpose(mat)
-            case 3: unshift(mat,int(key[i+1]))
-        #  case 4: offsetReverse(mat,key[i+1])
+            case 3: a = arr(int(key[i+1])); unshift(mat,a)
     return mat
 
 
-ded = "~um~~~~~mnor nal"
-mat1 = makeMatrix(ded)
+ded = input()
+mno = makeMatrix(ded)
 s= "3523363124363235"
 
 # m = [[108, 111, 98, 98], [101, 104, 101, 113], [102, 100, 0, 0], [0, 0, 0, 5]]
@@ -174,5 +191,14 @@ s= "3523363124363235"
 # mat2 = transpose(mat1)
 # mat2 = offsetReverse(mat2,2)
 
-mat2 = decodeFun(s,mat1)
-print(getString(mat2))
+# mat2 = decodeFun(s,mat1)
+
+mno = unshift(mno,arr(5))
+mno = unshift(mno,arr(2))
+mno = unshift(mno,arr(6))
+mno = transpose(mno)
+mno = unshift(mno,arr(1))
+mno = unshift(mno,arr(6))
+mno = transpose(mno)
+mno = unshift(mno,arr(3))
+print(getString(mno))

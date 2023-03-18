@@ -197,12 +197,31 @@ def generateKey():
         s += str(n2)
     return s
 
+def arr(op):
+    amt=[0,0,0,0]
+    if op==1:
+        amt=[2,1,0,3]
+    elif op==2:
+        amt=[1,2,0,3]
+    elif op==3:
+        amt=[0,3,0,3]
+    elif op==4:
+        amt=[2,3,1,0]
+    elif op==5:
+        amt=[3,0,0,2]
+    elif op==6:
+        amt=[0,1,2,3]
+    elif op==7:
+        amt=[1,1,2,1]
+    return amt
+
+
 def encodeFun(key,mat):
     for i in range(0,14,2):
         match int(key[i]):
             case 1: mat = offset(mat,int(key[i+1]))
             case 2: mat = transpose(mat)
-            case 3: mat = shiftMatrix(mat,int(key[i+1]))
+            case 3: mat = shiftMatrix(mat,int(key[i+1])); print(mat)
     return mat
 
 # mat_arr = offset(mat_arr,2)
@@ -213,16 +232,16 @@ def encodeFun(key,mat):
 samp_string = "normal num"
 mat_arr = makeMatrix(samp_string)
 s= "3523363124363235"
-# mat_arr = shiftMatrix(mat_arr,3)
-# mat_arr = transpose(mat_arr)
-# mat_arr = shiftMatrix(mat_arr,6)
-# mat_arr = shiftMatrix(mat_arr,1)
-# mat_arr = transpose(mat_arr)
-# mat_arr = shiftMatrix(mat_arr,6)
-# mat_arr = shiftMatrix(mat_arr,2)
-# mat_arr = shiftMatrix(mat_arr,5)
 
-mat_arr = encodeFun(s,mat_arr)
+# mat_arr = encodeFun(s,mat_arr)
+mat_arr = shiftMatrix(mat_arr,5)
+mat_arr = transpose(mat_arr)
+mat_arr = shiftMatrix(mat_arr,6)
+mat_arr = shiftMatrix(mat_arr,1)
+mat_arr = transpose(mat_arr)
+mat_arr = shiftMatrix(mat_arr,6)
+mat_arr = shiftMatrix(mat_arr,2)
+mat_arr = shiftMatrix(mat_arr,5)
 
 print(s)
 
