@@ -69,9 +69,56 @@ def offsetReverse(matrix,n):
             matrix[0, 0]-= 5
     return matrix
 
-ded = "elmlev%e i|s hto"
-mat = makeMatrix(ded)
-print(getString(mat))
+def interchangeInverse(l1,p):
+  match p:
+    case 1:
+      row(0,1,l1)
+      row(2,3,l1)
+    case 2:
+      row(0,3,l1)
+      row(2,1,l1)
+      row(2,3,l1)
+    case 3:
+      col(0,1,l1)
+      col(2,3,l1)
+      col(0,2,l1)
+    case 4:
+      row(1,3,l1)
+      col(1,3,l1)
+      row(0,2,l1)
+    case 5:
+      col(1,2,l1)
+      col(0,1,l1)
+      row(1,3,l1)
+    case 6:
+      col(2,1,l1)
+      row(2,1,l1)
+      col(1,3,l1)
+    case 7:
+      col(1,2,l1)
+      row(1,2,l1)
+      row(1,3,l1)
+    case 8:
+      row(2,3,l1)
+      row(0,2,l1)
+      row(0,1,l1)
+    case 9:
+      col(1,2,l1)
+      col(0,1,l1)
+      row(0,1,l1)
+  return l1
 
-mat3 = offsetReverse(mat2,2)
-print(getString(mat3))
+def row(a,b,l1):
+  l1[a],l1[b]=l1[b],l1[a]
+  
+def col(a,b,l1):
+  for i in l1:
+    i[a],i[b]=i[b],i[a]
+
+ded = "adgbbolehe"
+mat2 = makeMatrix(ded)
+print(mat2)
+
+mat3 = interchangeInverse(mat2,4)
+# mat2 = offsetReverse(mat2,2)
+print(getString(mat2))

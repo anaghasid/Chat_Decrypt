@@ -1,6 +1,5 @@
 import random
 
-samp_string = "hello how is everyone"
 
 def makeMatrix(string1):
     mat_arr = []
@@ -80,6 +79,10 @@ def interchange(l1,p):
       row(0,2,l1)
       col(1,3,l1)
       row(1,3,l1)
+    case 4:
+      row(0,1,l1)
+      col(0,1,l1)
+      col(1,2,l1)
     case 5:
       row(1,3,l1)
       col(0,1,l1)
@@ -96,10 +99,6 @@ def interchange(l1,p):
       row(0,1,l1)
       row(0,2,l1)
       row(2,3,l1)
-    case 9:
-      row(0,1,l1)
-      col(0,1,l1)
-      col(1,2,l1)
   return l1
 
 def row(a,b,l1):
@@ -123,11 +122,11 @@ def getString(mat_arr):
             res_str += chr(mat_arr[i][j])
     return res_str
 
-
+samp_string = "gobblehead"
 mat_arr = makeMatrix(samp_string)
 printMatrix(mat_arr)
-mat_arr = offset(mat_arr,2)
-mat_arr = interchange(mat_arr,5)
-print("After offset, string: ",getString(mat_arr))
-# printMatrix(interchange(mat_arr,4))
+# mat_arr = offset(mat_arr,2)
+# mat_arr = interchange(mat_arr,3)
+printMatrix(interchange(mat_arr,4))
+print("After offset, interchange, string: ",getString(mat_arr))
 
