@@ -17,8 +17,10 @@ def makeMatrix(string1):
         temp_l = []
         for j in range(i, (i+4)):
             if j<leng:
-                # print(string1[j],end=" ")
-                temp_l.append(ord(string1[j]))
+                if(string1[j]=='~'):
+                   temp_l.append(0)
+                else:
+                    temp_l.append(ord(string1[j]))
 
         i = j + 1
         if(i>leng):
@@ -150,12 +152,21 @@ def unshift(l1, amt):
             j+=1
     return shift
 
-ded = "fyffnh nkaatianh"
+def decodeFun(key,mat):
+   for i in range(14,0,-2):
+      match key[i]:
+         case 1: offsetReverse(mat,key[i+1])
+         case 2: transpose(mat,key[i+1])
+         case 3: unshift(mat,key[i+1])
+        #  case 4: offsetReverse(mat,key[i+1])
+
+
+ded = "sfz♣lm~or ~~n~~m"
 mat1 = makeMatrix(ded)
 
 # m = [[108, 111, 98, 98], [101, 104, 101, 113], [102, 100, 0, 0], [0, 0, 0, 5]]
 # print(unshift(m,[0,3,0,3]))
-# mat2 = unshift(mat1,[0,3,0,3])
+mat2 = unshift(mat1,[0,3,0,3])
 # print(mat2)
 # # mat3 = interchangeInverse(mat1,4)
 mat2 = transpose(mat1)

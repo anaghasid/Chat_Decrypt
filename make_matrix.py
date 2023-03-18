@@ -149,9 +149,7 @@ def shiftMatrix(l1,op):
         shift=fun1(l1,[0,1,2,3])
 
     elif op==7:
-        shift=fun1(l1,[1,1,2,1])
-
-            
+        shift=fun1(l1,[1,1,2,1])        
     return shift
             
 def shifter(l2):
@@ -190,14 +188,26 @@ def transpose(l1):
         l2.append(row)
     return l2
 
+def generateKey():
+    s = ""
+    for i in range(8):
+        n1 = random.randint(1,3)
+        n2 = random.randint(1,7)
+        s += str(n1)
+        s += str(n2)
+    return s
 
-samp_string = "ankithaaa ananth"
+
+samp_string = "normal num"
 mat_arr = makeMatrix(samp_string)
-printMatrix(mat_arr)
 mat_arr = offset(mat_arr,2)
 # mat_arr = interchange(mat_arr,3)
 mat_arr = transpose(mat_arr)
-# mat_arr = shiftMatrix(mat_arr,3)
-printMatrix(mat_arr)
+mat_arr = shiftMatrix(mat_arr,3)
+
+# s = generateKey()
+s= "3523363124363235"
+print(s)
+
 print("After offset, interchange, string: ",getString(mat_arr))
 
