@@ -197,17 +197,27 @@ def generateKey():
         s += str(n2)
     return s
 
+def encodeFun(key,mat):
+    for i in range(0,14,2):
+        match int(key[i]):
+            case 1: mat = offset(mat,key[i+1])
+            case 2: mat = transpose(mat)
+            case 3: mat = shiftMatrix(mat,key[i+1])
+        print(mat)
+    return mat
 
-samp_string = "normal num"
-mat_arr = makeMatrix(samp_string)
-mat_arr = offset(mat_arr,2)
-# mat_arr = interchange(mat_arr,3)
-mat_arr = transpose(mat_arr)
-mat_arr = shiftMatrix(mat_arr,3)
+# mat_arr = offset(mat_arr,2)
+# # mat_arr = interchange(mat_arr,3)
+# mat_arr = transpose(mat_arr)
 
 # s = generateKey()
+samp_string = "normal num"
+mat_arr = makeMatrix(samp_string)
 s= "3523363124363235"
+mat_arr = shiftMatrix(mat_arr,3)
+# mat_arr = encodeFun(s,mat_arr)
+
 print(s)
 
-print("After offset, interchange, string: ",getString(mat_arr))
+print("String after operations: ",getString(mat_arr))
 

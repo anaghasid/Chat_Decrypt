@@ -154,9 +154,9 @@ def unshift(l1, amt):
 
 def decodeFun(key,mat):
    for i in range(14,0,-2):
-      match key[i]:
+      match int(key[i]):
          case 1: offsetReverse(mat,key[i+1])
-         case 2: transpose(mat,key[i+1])
+         case 2: transpose(mat)
          case 3: unshift(mat,key[i+1])
         #  case 4: offsetReverse(mat,key[i+1])
 
