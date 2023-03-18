@@ -1,9 +1,9 @@
 import random
 
 samp_string = "hello how is everyone"
-mat_arr = []
 
-def makeMatrix(string1, mat_arr):
+def makeMatrix(string1):
+    mat_arr = []
     i=0
     leng = len(string1)
     if (leng%16)!=0:
@@ -26,10 +26,10 @@ def makeMatrix(string1, mat_arr):
             break
         mat_arr.append(temp_l)
         count += 1
+    return mat_arr
 
 
-def offset(matrix):
-    n=random.randint(1,7)
+def offset(matrix,n):
     match n:
         case 1:
             for i in range(len(matrix[0])):
@@ -116,46 +116,18 @@ def printMatrix(mat):
         print()
     print()
 
+def getString(mat_arr):
+    res_str = ""
+    for i in range(4):
+        for j in range(4):
+            res_str += chr(mat_arr[i][j])
+    return res_str
 
 
-def offsetReverse(matrix):
-    n=random.randint(1,7)
-    match n:
-        case 1:
-            for i in range(len(matrix[0])):
-                matrix[0][i] -= 5 #row addition
-        case 2:
-            for i in range(len(matrix[0])):
-                matrix[i][0]-= 5 #column addition
-        case 3:
-            for i in range(len(matrix[0])):
-                matrix[1][i]-=5
-                matrix[0][i]-=5 #2 rows addition
-        case 4:
-            for i in range(len(matrix[0])):
-                matrix[3][i]+=5
-                matrix[2][i]+=5 #2 row subtraction
-                
-        case 5:
-            for i in range(len(matrix[0])):
-                matrix[i][3] +=5
-                matrix[i][0] +=5
-                matrix[i][2] -=5
-                matrix[i][1] -=5
-                
-        case 6:
-            for i in range(len(matrix[0])):
-                matrix[i][i]-=5 #diagonal 
-        case 7:
-            matrix[0, 0]-= 5
-            matrix[0, -1]-=5
-            matrix[-1, 0]+=5
-            matrix[-1, -1]+=5
-    return matrix
-
-
-makeMatrix(samp_string, mat_arr)
+mat_arr = makeMatrix(samp_string)
 printMatrix(mat_arr)
-# print("After offset: ",offset(mat_arr))
-printMatrix(interchange(mat_arr,4))
+mat_arr = offset(mat_arr,2)
+mat_arr = interchange(mat_arr,5)
+print("After offset, string: ",getString(mat_arr))
+# printMatrix(interchange(mat_arr,4))
 
