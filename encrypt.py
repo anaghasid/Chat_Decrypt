@@ -47,19 +47,12 @@ def offset(matrix,n):
                 
         case 5:
             for i in range(len(matrix[0])):
-                matrix[i][1] = (matrix[i][1] +5)%128
-                matrix[i][2] = (matrix[i][2] +5)%128
                 matrix[i][0] = (matrix[i][0] -5)%128
-                matrix[i][3] = (matrix[i][3] -5)%128
+                matrix[i][2] = (matrix[i][2] +5)%128
                 
         case 6:
             for i in range(len(matrix[0])):
                 matrix[i][i] = (matrix[i][i]+5)%128 #diagonal 
-        case 7:
-            matrix[0,0] = (matrix[0, 0]+5)%128
-            matrix[0,-1] = (matrix[0,-1]+5)%128
-            matrix[-1,0] = (matrix[-1,0]+5)%128
-            matrix[-1,-1] = (matrix[-1,-1]+5)%128
     return matrix
 
 def interchange(l1,p):
@@ -221,26 +214,17 @@ def encodeFun(key,mat):
         match int(key[i]):
             case 1: mat = offset(mat,int(key[i+1]))
             case 2: mat = transpose(mat)
-            case 3: mat = shiftMatrix(mat,int(key[i+1])); 
-        return mat
+            case 3: mat = shiftMatrix(mat,int(key[i+1]));     
+    return mat
 
 
 # s = generateKey()
-samp_string = "normal num"
+samp_string = "hii Ankithaa!"
 mat_arr = makeMatrix(samp_string)
-s= "3523363124363235"
+s= "3523163124363218"
 
-# mat_arr = encodeFun(s,mat_arr)
-mat_arr = shiftMatrix(mat_arr,5)
-mat_arr = transpose(mat_arr)
-mat_arr = shiftMatrix(mat_arr,6)
-mat_arr = shiftMatrix(mat_arr,1)
-mat_arr = transpose(mat_arr)
-mat_arr = shiftMatrix(mat_arr,6)
-mat_arr = shiftMatrix(mat_arr,2)
-mat_arr = shiftMatrix(mat_arr,5)
+mat_arr = encodeFun(s,mat_arr)
 
-# print(s)
 
 print("String after operations: ",getString(mat_arr))
 

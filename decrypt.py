@@ -56,19 +56,12 @@ def offsetReverse(matrix,n):
                 
         case 5:
             for i in range(len(matrix[0])):
-                matrix[i][3] = (matrix[i][3] +5)%128
                 matrix[i][0] = (matrix[i][0] +5)%128
-                matrix[i][2] = (matrix[i][2] -5)%128
-                matrix[i][1] = (matrix[i][1] -5)%128
+                matrix[i][2] = (matrix[i][2]-5)%128
                 
         case 6:
             for i in range(len(matrix[0])):
                 matrix[i][i] = (matrix[i][i]-5)%128 #diagonal 
-        case 7:
-            matrix[-1,-1] = (matrix[-1,-1]-5)%128
-            matrix[-1,0] = (matrix[-1,0]-5)%128
-            matrix[0,-1] = (matrix[0,-1]-5)%128
-            matrix[0,0] = (matrix[0, 0]-5)%128
     return matrix
 
 def interchangeInverse(l1,p):
@@ -172,42 +165,36 @@ def arr(op):
 
 def decodeFun(key,mat):
     for i in range(14,-1,-2):
-        print(key[i])
         match int(key[i]):
             case 1: mat = offsetReverse(mat,int(key[i+1]))
-            case 2: mat = transpose(mat); print("transpose")
+            case 2: mat = transpose(mat);
             case 3: a = arr(int(key[i+1])); mat = unshift(mat,a)
-        print(mat)
     return mat
 
 
 ded = input()
 mno = makeMatrix(ded)
-s= "3523363124363235"
+s= "3523163124363218"
+# s="3521331524311328"  
 
-# m = [[108, 111, 98, 98], [101, 104, 101, 113], [102, 100, 0, 0], [0, 0, 0, 5]]
-# print(unshift(m,[0,3,0,3]))
-# mat2 = unshift(mat1,[0,3,0,3])
-# print(mat2)
-# # mat3 = interchangeInverse(mat1,4)
-# mat2 = transpose(mat1)
-# mat2 = offsetReverse(mat2,2)
+mat2 = decodeFun(s,mno)
+# mat2 = offsetReverse(mno,5)
 
-# mat2 = decodeFun(s,mno)
+print(getString(mat2))
 
-mno = unshift(mno,arr(5))
-print(mno)
-mno = unshift(mno,arr(2))
-print(mno)
-mno = unshift(mno,arr(6))
-print(mno)
-mno = transpose(mno)
-print(mno)
-mno = unshift(mno,arr(1))
-print(mno)
-mno = unshift(mno,arr(6))
-print(mno)
-mno = transpose(mno)
-print(mno)
-mno = unshift(mno,arr(5))
-print(getString(mno))
+# mno = unshift(mno,arr(5))
+# print(mno)
+# mno = unshift(mno,arr(2))
+# print(mno)
+# mno = unshift(mno,arr(6))
+# print(mno)
+# mno = transpose(mno)
+# print(mno)
+# mno = unshift(mno,arr(1))
+# print(mno)
+# mno = unshift(mno,arr(6))
+# print(mno)
+# mno = transpose(mno)
+# print(mno)
+# mno = unshift(mno,arr(5))
+# print(mno)
