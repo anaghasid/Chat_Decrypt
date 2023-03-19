@@ -171,11 +171,13 @@ def arr(op):
     return amt
 
 def decodeFun(key,mat):
-    for i in range(14,0,-2):
+    for i in range(14,-1,-2):
+        print(key[i])
         match int(key[i]):
-            case 1: offsetReverse(mat,int(key[i+1]))
-            case 2: transpose(mat)
-            case 3: a = arr(int(key[i+1])); unshift(mat,a)
+            case 1: mat = offsetReverse(mat,int(key[i+1]))
+            case 2: mat = transpose(mat); print("transpose")
+            case 3: a = arr(int(key[i+1])); mat = unshift(mat,a)
+        print(mat)
     return mat
 
 
@@ -191,14 +193,21 @@ s= "3523363124363235"
 # mat2 = transpose(mat1)
 # mat2 = offsetReverse(mat2,2)
 
-# mat2 = decodeFun(s,mat1)
+# mat2 = decodeFun(s,mno)
 
 mno = unshift(mno,arr(5))
+print(mno)
 mno = unshift(mno,arr(2))
+print(mno)
 mno = unshift(mno,arr(6))
+print(mno)
 mno = transpose(mno)
+print(mno)
 mno = unshift(mno,arr(1))
+print(mno)
 mno = unshift(mno,arr(6))
+print(mno)
 mno = transpose(mno)
-mno = unshift(mno,arr(3))
+print(mno)
+mno = unshift(mno,arr(5))
 print(getString(mno))

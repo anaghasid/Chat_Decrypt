@@ -217,16 +217,13 @@ def arr(op):
 
 
 def encodeFun(key,mat):
-    for i in range(0,14,2):
+    for i in range(0,15,2):
         match int(key[i]):
             case 1: mat = offset(mat,int(key[i+1]))
             case 2: mat = transpose(mat)
-            case 3: mat = shiftMatrix(mat,int(key[i+1])); print(mat)
-    return mat
+            case 3: mat = shiftMatrix(mat,int(key[i+1])); 
+        return mat
 
-# mat_arr = offset(mat_arr,2)
-# # mat_arr = interchange(mat_arr,3)
-# mat_arr = transpose(mat_arr)
 
 # s = generateKey()
 samp_string = "normal num"
@@ -243,7 +240,7 @@ mat_arr = shiftMatrix(mat_arr,6)
 mat_arr = shiftMatrix(mat_arr,2)
 mat_arr = shiftMatrix(mat_arr,5)
 
-print(s)
+# print(s)
 
 print("String after operations: ",getString(mat_arr))
 
